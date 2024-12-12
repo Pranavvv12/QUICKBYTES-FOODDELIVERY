@@ -1,0 +1,10 @@
+POST http://localhost:4000/api/food/add
+Content-Type: application/json
+
+{
+    "name": "Pizza",
+    "description": "Delicious cheese pizza",
+    "price": 9.99,
+    "image": 12345,
+    "category": "Italian"
+}
