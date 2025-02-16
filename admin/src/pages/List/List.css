@@ -1,0 +1,123 @@
+/* General Styling */
+.list {
+   
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+    margin: 20px;
+    padding: 20px;
+    font-family: 'Poppins', Arial, sans-serif;
+    max-width: 65%;
+    
+  }
+  
+  .list p {
+    margin: 0;
+    font-weight: 600;
+    color: #444;
+  }
+  
+  .list > p {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #333;
+  }
+  
+  /* Table Styling */
+  .list-table {
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .list-table-format {
+    display: grid;
+    grid-template-columns: 0.2fr 1.5fr 1.2fr 1fr 0.7fr;
+  align-items: center;
+  text-align: center;
+    gap: 15px;
+    padding: 12px 20px;
+    border-bottom: 1px solid #e0e0e0;
+    background: #fff;
+    transition: all 0.3s ease;
+  }
+  
+  .list-table-format.title {
+    background-color: #3f51b5;
+    text-align: center;
+    color: rgb(16, 15, 15);
+    font-weight: bold;
+    font-size: 14px;
+  }
+  
+  .list-table-format:nth-child(odd) {
+    background: #f9f9f9;
+  }
+  
+  .list-table-format img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .list-table-format:hover {
+    background-color: #f0f0f0;
+    transform: scale(1.01);
+  }
+  
+  /* Action Styling */
+  .list-table-format p:last-child {
+    color: #ff4d4f;
+    cursor: pointer;
+    font-size: 18px;
+    text-align: center;
+  }
+  
+  .list-table-format p:last-child:hover {
+    color: #d42e2e;
+    transform: scale(1.2);
+  }
+  .cursor{
+    cursor: pointer;
+  }
+  
+  /* Responsive Styling */
+  @media (max-width: 768px) {
+    .list {
+      padding: 15px;
+    }
+  
+    .list-table-format {
+      grid-template-columns: 1fr 3fr 1fr;
+      gap: 10px;
+    }
+  
+    .list-table-format.title {
+      display: none;
+    }
+  
+    .list-table-format img {
+      width: 50px;
+      height: 50px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .list > p {
+      font-size: 1.2rem;
+    }
+  
+    .list-table-format {
+      grid-template-columns: 1fr 2fr;
+      gap: 8px;
+      font-size: 12px;
+    }
+  
+    .list-table-format img {
+      width: 40px;
+      height: 40px;
+    }
+   
+  }
+  
