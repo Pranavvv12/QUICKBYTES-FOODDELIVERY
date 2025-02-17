@@ -6,9 +6,9 @@ const foodRouter=express.Router();
 
 //image storage
 const storage = multer.diskStorage({
-    destination: "uploads", // The directory where files will be saved
-    filename: (req, file, cb) => { // 'file' is passed here as an argument
-        cb(null, `${Date.now()}-${file.originalname}`); // Use 'file.originalname' correctly
+    destination: "uploads", 
+    filename: (req, file, cb) => { 
+        cb(null, `${Date.now()}-${file.originalname}`); 
     }
 });
 

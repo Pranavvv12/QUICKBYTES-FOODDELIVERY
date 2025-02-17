@@ -9,13 +9,11 @@ const razorpay = new Razorpay({
   key_secret: process.env.RAZORPAY_KEY_SECRET,
 });
 
-// Place Order
 const placeOrder = async (req, res) => {
   const frontend_url="http://localhost:3000";
   try {
     const { userId, items, amount, address } = req.body;
 
-    // Create a new order in the database
     const newOrder = new orderModel({
       userId,
       items,
@@ -24,15 +22,12 @@ const placeOrder = async (req, res) => {
     });
     await newOrder.save();
 
-    // Clear the user's cart
     await userModel.findByIdAndUpdate(userId, { cartData: {} });
-
-    // Create a Razorpay order
     const options = {
-      amount: amount * 100, // Amount in paise (e.g., 100 INR = 10000 paise)
+      amount: amount * 100, 
       currency: "INR",
       receipt: `order_${newOrder._id}`,
-      payment_capture: 1, // Auto-capture payment
+      payment_capture: 1, 
     };
 
     const razorpayOrder = await razorpay.orders.create(options);
@@ -49,23 +44,18 @@ const placeOrder = async (req, res) => {
     res.json({ success: false, message: "Error creating order" });
   }
 };
-
-// Verify Payment
 const verifyOrder = async (req, res) => {
   const { orderId, paymentId, signature } = req.body;
   try {
-    // Generate the expected signature
     const generatedSignature = crypto
       .createHmac("sha256", process.env.RAZORPAY_KEY_SECRET)
       .update(`${orderId}|${paymentId}`)
       .digest("hex");
 
     if (generatedSignature === signature) {
-      // Payment is successful
       await orderModel.findByIdAndUpdate(orderId, { payment: true });
       res.json({ success: true, message: "Payment verified successfully" });
     } else {
-      // Payment failed
       await orderModel.findByIdAndDelete(orderId);
       res.json({ success: false, message: "Payment verification failed" });
     }
@@ -74,8 +64,6 @@ const verifyOrder = async (req, res) => {
     res.json({ success: false, message: "Error verifying payment" });
   }
 };
-
-// Fetch User Orders
 const userOrders = async (req, res) => {
   try {
     const orders = await orderModel.find({ userId: req.body.userId });
@@ -85,21 +73,7 @@ const userOrders = async (req, res) => {
     res.json({ success: false, message: "Error fetching user orders" });
   }
 };
-
-// List All Orders (Admin Only)
 const listOrders = async (req, res) => {
-  // try {
-  //   const userData = await userModel.findById(req.body.userId);
-  //   if (userData && userData.role === "admin") {
-  //     const orders = await orderModel.find({});
-  //     res.json({ success: true, data: orders });
-  //   } else {
-  //     res.json({ success: false, message: "You are not authorized to view all orders" });
-  //   }
-  // } catch (error) {
-  //   console.log(error);
-  //   res.json({ success: false, message: "Error fetching all orders" });
-  // }
   try{
     const orders=await orderModel.find({});
     res.json({success:true,data:orders})
@@ -109,23 +83,7 @@ const listOrders = async (req, res) => {
     res.json({success:false,message:"error"} )
   }
 };
-
-// Update Order Status (Admin Only)
 const updateStatus = async (req, res) => {
-  // try {
-  //   const userData = await userModel.findById(req.body.userId);
-  //   if (userData && userData.role === "admin") {
-  //     await orderModel.findByIdAndUpdate(req.body.orderId, {
-  //       status: req.body.status,
-  //     });
-  //     res.json({ success: true, message: "Order status updated successfully" });
-  //   } else {
-  //     res.json({ success: false, message: "You are not authorized to update order status" });
-  //   }
-  // } catch (error) {
-  //   console.log(error);
-  //   res.json({ success: false, message: "Error updating order status" });
-  // }
   try{
     
   await orderModel.findByIdAndUpdate(req.body.orderId,{status:req.body.status})
@@ -136,6 +94,4 @@ catch(error){
   res.json({succes:false,message:"error"});
 }
 };
-
-// Export all functions
 export { placeOrder, verifyOrder, userOrders, listOrders, updateStatus };
