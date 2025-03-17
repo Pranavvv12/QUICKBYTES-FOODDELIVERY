@@ -1,0 +1,221 @@
+
+.place-order {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 50px;
+    margin: 50px auto;
+    max-width: 1200px;
+    padding: 20px;
+  }
+  
+  
+  .place-order-left {
+    width: 60%;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .place-order-left .title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .place-order-left input {
+    margin-bottom: 15px;
+    width: 90%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline-color: #007bff;
+    font-size: 14px;
+  }
+  
+  .place-order-left .multi-fields {
+    display: flex;
+    gap: 10px;
+    width: 94%;
+  }
+  .place-order-left .checkbox-field {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .place-order-left .checkbox-field input[type="checkbox"] {
+    width: 10px;
+    height: 10px;
+    margin-right: 10px;
+    border: 2px solid #28a745; 
+    border-radius: 4px; 
+    position: relative;
+    cursor: pointer;
+    transform: scale(1.5);
+  }
+  
+  .place-order-left .checkbox-field input[type="checkbox"]:checked {
+    background-color: #28a745; 
+    border: none;
+  }
+  
+  .place-order-left .checkbox-field input[type="checkbox"]:checked::after {
+    font-size: 14px;
+    color: white;
+    position: absolute;
+    top: 0;
+    left: 3px;
+  }
+  
+  .place-order-left .checkbox-field label {
+    margin: 0;
+    cursor: pointer; 
+    margin-bottom: 9px;
+  }
+  
+  .place-order-left .checkbox-field {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .place-order-left .checkbox-field input {
+    margin-right: 10px;
+  }
+  
+  .place-order-left .save-button {
+    margin-top: 20px;
+    padding: 12px;
+    width: 100%;
+    font-size: 16px;
+    color: white;
+    background-color: #ff5722;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .place-order-left .save-button:hover {
+    background-color: #df4c1f;
+  }
+  
+  
+  .place-order-right {
+    width: 35%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .place-order-right h2 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .cart-total-details {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0;
+    font-size: 16px;
+  }
+  
+  .cart-total-details p {
+    margin: 0;
+  }
+  
+  .place-order-right hr {
+    border: 0;
+    height: 1px;
+    background-color: #ddd;
+    margin: 20px 0;
+  }
+  
+  .place-order-button {
+    margin-top: 20px;
+    padding: 12px;
+    width: 100%;
+    font-size: 16px;
+    color: white;
+    background-color: #ff5722;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .place-order-button:hover {
+    background-color: #df4c1f;
+  }
+ 
+  .checkbox-field{
+    display: flex;
+    justify-self: start;
+    width: 30%;
+
+  }
+@media (max-width: 768px) {
+  .place-order {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+  }
+
+  .place-order-left,
+  .place-order-right {
+    width: 100%;
+    padding: 15px;
+    box-shadow: none;
+  }
+
+  .place-order-left input,
+  .place-order-left .multi-fields input {
+    width: 100%;
+    margin-bottom: 10px;
+    width: 94%;
+  }
+
+  .place-order-left .multi-fields {
+    flex-direction: column;
+    gap: 0;
+   
+  }
+
+  .place-order-right h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+
+  .cart-total-details {
+    font-size: 14px;
+    margin: 10px 0;
+  }
+
+  .place-order-right hr {
+    margin: 15px 0;
+  }
+
+  .place-order-left .save-button,
+  .place-order-button {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .checkbox-field {
+    flex-wrap: wrap;
+    font-size: 12px;
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .checkbox-field input[type="checkbox"] {
+    transform: scale(1.2);
+  }
+}

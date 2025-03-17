@@ -1,0 +1,125 @@
+.cart {
+    margin: 20px auto;
+    width: 90%;
+    max-width: 1200px;
+  }
+
+  .cart-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+  }
+  
+  .cart-empty-image {
+    width: 300px;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  
+  .cart-empty-text {
+    margin-top: 24px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #535665;
+    line-height: 1px;
+  }
+  .cart-para {
+    margin-top: 8px;
+    color: #7e808c;
+  }
+  .cart-button {
+    margin-top: 30px;
+    padding: 11px 20px;
+    text-transform: uppercase;
+    background-color: #ff5200;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    border: 0;
+    outline: 0;
+    font-size: 15px;
+    text-align: center;
+  }
+  
+  .cart-header,
+  .cart-item-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 1fr 1fr 0.5fr;
+    align-items: center;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 16px;
+  }
+  
+  .cart-header {
+    font-weight: bold;
+    color: gray;
+    border-bottom: 1px solid #e2e2e2;
+  }
+  
+  .cart-item-row {
+    border-bottom: 1px solid #f1f1f1;
+  }
+  
+  .cart-item-row img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin: 0 auto;
+  }
+  
+  .cart-item-row button {
+    background: none;
+    border: none;
+    color: red;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .cart-summary {
+    margin-top: 20px;
+    text-align: right;
+    font-size: 16px;
+  }
+  
+  .summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+  }
+  
+  .cart-summary button {
+    background-color: #ff5722;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  .cart-summary button:hover{
+    background-color: #df4c1f;
+  }
+  
+  @media (max-width: 768px) {
+    .cart-header,
+    .cart-item-row {
+      grid-template-columns: 1fr 2fr 1fr 1fr 1fr 0.7fr;
+      font-size: 14px;
+    }
+  
+    .cart-summary {
+      text-align: center;
+    }
+  }
+@media (max-width: 330px){
+  .cart-empty-text{
+    line-height: 1.5;
+  }
+  .cart-para{
+    line-height: 1.5;
+  }
+}
+  
