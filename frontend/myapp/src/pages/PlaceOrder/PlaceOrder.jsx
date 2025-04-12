@@ -430,7 +430,9 @@
 //   );
 // };
 
-// export default PlaceOrder;import React, { useContext, useEffect, useState } from "react";
+// export default PlaceOrder;
+
+import React, { useContext, useEffect, useState } from "react";
 import "./PlaceOrder.css";
 import { StoreContext } from "../../context/StoreContext";
 import axios from "axios";
