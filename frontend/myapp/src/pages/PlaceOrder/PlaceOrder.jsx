@@ -276,7 +276,7 @@ const PlaceOrder = () => {
         const { order_id, amount, currency } = response.data;
 
         const options = {
-          key: process.env.REACT_APP_RAZORPAY_KEY_ID,
+          key: "rzp_test_hMKTlcIIc2dPS7",
           amount,
           currency,
           name: "Food Delivery",
@@ -331,6 +331,8 @@ const PlaceOrder = () => {
     const script = document.createElement("script");
     script.src = "https://checkout.razorpay.com/v1/checkout.js";
     script.async = true;
+    script.onload = () => console.log("Razorpay script loaded");
+    script.onerror = () => toast.error("Failed to load Razorpay script");
     document.body.appendChild(script);
   }, [token]);
 
