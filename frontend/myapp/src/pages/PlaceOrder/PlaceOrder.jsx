@@ -430,8 +430,7 @@
 //   );
 // };
 
-// export default PlaceOrder;
-import React, { useContext, useEffect, useState } from "react";
+// export default PlaceOrder;import React, { useContext, useEffect, useState } from "react";
 import "./PlaceOrder.css";
 import { StoreContext } from "../../context/StoreContext";
 import axios from "axios";
@@ -462,78 +461,30 @@ const PlaceOrder = () => {
   const placeOrder = async (event) => {
     event.preventDefault();
 
-    // Check if all the required fields are filled
     if (!data.name || !data.phone || !data.pincode || !data.address || !data.city || !data.state) {
       toast.error("Please fill all required fields");
       return;
     }
 
-    let orderItems = [];
-    food_list.forEach((item) => {
-      const quantity = cartItems[item._id];
-      if (quantity > 0) {
-        orderItems.push({ ...item, quantity });
-      }
-    });
-
-    const orderData = {
-      address: data,
-      items: orderItems,
-      amount: totalPayable,
+    const options = {
+      key: "rzp_test_hMKTlcIIc2dPS7", // Replace with your Razorpay key
+      amount: totalPayable * 100, // in paisa
+      currency: "INR",
+      name: "Food Delivery",
+      description: "Payment for your order",
+      handler: function (response) {
+        toast.success("Order placed successfully!");
+        navigate("/myorders");
+      },
+      prefill: {
+        name: data.name,
+        contact: data.phone,
+      },
+      theme: { color: "#3399cc" },
     };
 
-    try {
-      // Call the API to place the order
-      const response = await axios.post(`${url}/api/order/place`, orderData, {
-        headers: { token },
-      });
-
-      if (response.data.success) {
-        const { order_id, amount, currency } = response.data;
-
-        const options = {
-          key: "rzp_test_hMKTlcIIc2dPS7",  // Replace with your Razorpay key
-          amount,
-          currency,
-          name: "Food Delivery",
-          description: "Payment for your order",
-          order_id,
-          handler: async (response) => {
-            const { razorpay_payment_id, razorpay_order_id, razorpay_signature } = response;
-
-            try {
-              const verifyResponse = await axios.post(`${url}/api/order/verify`, {
-                orderId: razorpay_order_id,
-                paymentId: razorpay_payment_id,
-                signature: razorpay_signature,
-              });
-
-              if (verifyResponse.data.success) {
-                // Show success toast after successful order placement and payment verification
-                toast.success("Order placed successfully!");
-                navigate("/myorders");
-              } else {
-                toast.error("Payment verification failed");
-                navigate("/");
-              }
-            } catch (err) {
-              console.error("Verification error:", err);
-              toast.error("Error verifying payment");
-            }
-          },
-          theme: { color: "#3399cc" },
-        };
-
-        // Open Razorpay payment window
-        const razorpayInstance = new window.Razorpay(options);
-        razorpayInstance.open();
-      } else {
-        toast.error("Error placing order");
-      }
-    } catch (error) {
-      console.error("Placing order failed:", error);
-      toast.error("Something went wrong");
-    }
+    const rzp = new window.Razorpay(options);
+    rzp.open();
   };
 
   useEffect(() => {
@@ -545,12 +496,9 @@ const PlaceOrder = () => {
       navigate("/cart");
     }
 
-    // Load Razorpay script
     const script = document.createElement("script");
     script.src = "https://checkout.razorpay.com/v1/checkout.js";
     script.async = true;
-    script.onload = () => console.log("Razorpay script loaded");
-    script.onerror = () => toast.error("Failed to load Razorpay script");
     document.body.appendChild(script);
   }, [token]);
 
