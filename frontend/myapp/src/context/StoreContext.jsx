@@ -12,7 +12,7 @@ const StoreContextProvider = (props) => {
     return storedCart ? JSON.parse(storedCart) : {};
   });
 
-  const url = "http://localhost:4000";
+  const url = "https://quickbytes-fooddelivery-backend.onrender.com";
 
   const fetchFoodList = async () => {
     try {
