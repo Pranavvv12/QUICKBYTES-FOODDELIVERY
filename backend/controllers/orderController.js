@@ -98,7 +98,7 @@
 
 import Razorpay from "razorpay";
 import crypto from "crypto";
-import orderModel from "../models/ordermodel.js";
+import orderModel from "../models/orderModel.js";
 
 // Razorpay instance
 const razorpay = new Razorpay({
