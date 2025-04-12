@@ -12,7 +12,11 @@ const port = 4000;
 
 // Middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: "https://quickbytes-fooddelivery-frontend.onrender.com",
+    credentials: true,
+  }));
+  
 
 // Database Connection
 connectDB();
