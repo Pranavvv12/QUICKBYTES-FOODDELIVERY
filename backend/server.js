@@ -13,10 +13,13 @@ const port = 4000;
 // Middleware
 app.use(express.json());
 app.use(cors({
-    origin: "https://quickbytes-fooddelivery-frontend.onrender.com",
-    credentials: true,
+    origin: "https://quickbytes-fooddelivery-frontend.onrender.com",  // allow requests from your frontend domain
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],  // allow necessary HTTP methods
+    credentials: true,  // allow credentials (cookies, headers, etc.)
   }));
-  
+  app.options("*", (req, res) => {
+    res.status(204).end();  // Respond with No Content for OPTIONS requests
+  });
 
 // Database Connection
 connectDB();
