@@ -431,8 +431,6 @@
 // };
 
 // export default PlaceOrder;
-
-
 import React, { useContext, useEffect, useState } from "react";
 import "./PlaceOrder.css";
 import { StoreContext } from "../../context/StoreContext";
@@ -464,6 +462,7 @@ const PlaceOrder = () => {
   const placeOrder = async (event) => {
     event.preventDefault();
 
+    // Check if all the required fields are filled
     if (!data.name || !data.phone || !data.pincode || !data.address || !data.city || !data.state) {
       toast.error("Please fill all required fields");
       return;
@@ -484,6 +483,7 @@ const PlaceOrder = () => {
     };
 
     try {
+      // Call the API to place the order
       const response = await axios.post(`${url}/api/order/place`, orderData, {
         headers: { token },
       });
@@ -509,6 +509,7 @@ const PlaceOrder = () => {
               });
 
               if (verifyResponse.data.success) {
+                // Show success toast after successful order placement and payment verification
                 toast.success("Order placed successfully!");
                 navigate("/myorders");
               } else {
@@ -523,6 +524,7 @@ const PlaceOrder = () => {
           theme: { color: "#3399cc" },
         };
 
+        // Open Razorpay payment window
         const razorpayInstance = new window.Razorpay(options);
         razorpayInstance.open();
       } else {
